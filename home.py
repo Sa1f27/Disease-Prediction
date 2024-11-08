@@ -1,133 +1,63 @@
-import itertools
+import os
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.ticker import NullFormatter
 import pandas as pd
-pd.options.mode.chained_assignment = None
-import matplotlib.ticker as ticker
-from sklearn import preprocessing
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split
-from sklearn import metrics
 import pickle
-from tensorflow.keras.layers import Dense, Activation, Dropout
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.optimizers import Adam
+from sklearn.neighbors import KNeighborsClassifier
 
+# Define symptom and disease lists
+l1 = [
+    'itching', 'skin_rash', 'nodal_skin_eruptions', 'continuous_sneezing', 'shivering', 'chills', 'joint_pain',
+    'stomach_pain', 'acidity', 'ulcers_on_tongue', 'muscle_wasting', 'vomiting', 'burning_micturition', 'spotting_urination', 'fatigue',
+    'weight_gain', 'anxiety', 'mood_swings', 'weight_loss', 'restlessness', 'lethargy', 'patches_in_throat',
+    'irregular_sugar_level', 'cough', 'high_fever', 'sunken_eyes', 'breathlessness', 'sweating', 'dehydration', 'indigestion',
+    'headache', 'yellowish_skin', 'dark_urine', 'nausea', 'loss_of_appetite', 'pain_behind_the_eyes', 'back_pain', 'constipation',
+    'abdominal_pain', 'diarrhoea', 'mild_fever', 'yellow_urine', 'yellowing_of_eyes', 'acute_liver_failure', 'fluid_overload',
+    'swelling_of_stomach', 'swelled_lymph_nodes', 'malaise', 'blurred_and_distorted_vision', 'phlegm', 'throat_irritation',
+    'redness_of_eyes', 'sinus_pressure', 'runny_nose', 'congestion', 'chest_pain', 'weakness_in_limbs', 'fast_heart_rate',
+    'pain_during_bowel_movements', 'pain_in_anal_region', 'bloody_stool', 'irritation_in_anus', 'neck_pain', 'dizziness', 'cramps',
+    'bruising', 'obesity', 'swollen_legs', 'swollen_blood_vessels', 'puffy_face_and_eyes', 'enlarged_thyroid', 'brittle_nails',
+    'swollen_extremities', 'excessive_hunger', 'extra_marital_contacts', 'drying_and_tingling_lips', 'slurred_speech', 'knee_pain', 'hip_joint_pain',
+    'muscle_weakness', 'stiff_neck', 'swelling_joints', 'movement_stiffness', 'spinning_movements', 'loss_of_balance', 'unsteadiness', 'weakness_of_one_body_side',
+    'loss_of_smell', 'bladder_discomfort', 'foul_smell_of urine', 'continuous_feel_of_urine', 'passage_of_gases', 'internal_itching', 'toxic_look_(typhus)',
+    'depression', 'irritability', 'muscle_pain', 'altered_sensorium', 'red_spots_over_body', 'belly_pain', 'abnormal_menstruation',
+    'watering_from_eyes', 'increased_appetite', 'polyuria', 'family_history', 'mucoid_sputum', 'rusty_sputum', 'lack_of_concentration', 'visual_disturbances',
+    'receiving_blood_transfusion', 'receiving_unsterile_injections', 'coma', 'stomach_bleeding', 'distention_of_abdomen', 'history_of_alcohol_consumption',
+    'fluid_overload', 'blood_in_sputum', 'prominent_veins_on_calf', 'palpitations', 'painful_walking', 'pus_filled_pimples', 'blackheads', 'scurrying', 'skin_peeling',
+    'silver_like_dusting', 'small_dents_in_nails', 'inflammatory_nails', 'blister', 'red_sore_around_nose', 'yellow_crust_ooze'
+]
 
-import pandas as pd
-pd.options.mode.chained_assignment = None
-from tensorflow.keras.layers import InputLayer,Dense, Activation,Dropout
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.optimizers import Adam
-from sklearn.preprocessing import StandardScaler
+disease = [
+    'Fungal infection', 'Allergy', 'GERD', 'Chronic cholestasis', 'Drug Reaction',
+    'Peptic ulcer disease', 'AIDS', 'Diabetes', 'Gastroenteritis', 'Bronchial Asthma', 'Hypertension',
+    'Migraine', 'Cervical spondylosis', 'Paralysis (brain hemorrhage)', 'Jaundice', 'Malaria',
+    'Chicken pox', 'Dengue', 'Typhoid', 'Hepatitis A', 'Hepatitis B', 'Hepatitis C', 'Hepatitis D',
+    'Hepatitis E', 'Alcoholic hepatitis', 'Tuberculosis', 'Common Cold', 'Pneumonia',
+    'Dimorphic hemorrhoids (piles)', 'Heart attack', 'Varicose veins', 'Hypothyroidism', 'Hyperthyroidism',
+    'Hypoglycemia', 'Osteoarthritis', 'Arthritis', '(vertigo) Paroxysmal Positional Vertigo', 'Acne',
+    'Urinary tract infection', 'Psoriasis', 'Impetigo'
+]
 
+# Load dataset and preprocess
+data_path = os.path.join("C:", "Users", "huzai", "vs code projects", "Disease-Prediction", "dataset", "Training.csv")
+df = pd.read_csv(data_path)
 
-df=pd.read_csv(r'C:\Users\huzai\vs code projects\Disease-Prediction\dataset\heart.csv')
+# Replace prognosis labels with numerical values
+df.replace({'prognosis': {name: i for i, name in enumerate(disease)}}, inplace=True)
 
-df.head()
+# Separate features and target variable
+X = df[l1]
+y = df["prognosis"].astype(int)
 
-df.nunique(axis=0)
+# Initialize and train the model
+knn = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
+knn.fit(X, y)
 
+# Save the model, features, and labels using pickle
+with open('model.pkl', 'wb') as model_file:
+    pickle.dump(knn, model_file)
+with open('features.pkl', 'wb') as features_file:
+    pickle.dump(l1, features_file)
+with open('label_mapping.pkl', 'wb') as labels_file:
+    pickle.dump(disease, labels_file)
 
-Map categorical values to numerical values
-data_mapping = {
-    'RestingECG': {'Normal': 0, 'ST': 1, 'LHV': 2},
-    'ST_Slope': {'Flat': 0, 'Up': 1, 'Down': 2},
-    'ExerciseAngina': {'N': 0, 'Y': 1},
-    'ChestPainType': {'ATA': 0, 'NAP': 1, 'ASY': 2, 'TA': 3},
-    'Sex': {'M': 0, 'F': 1}
-}
-# Apply mappings to columns
-for column, mapping in data_mapping.items():
-    df[column] = df[column].map(mapping)
-
-
-for i,j in enumerate(df["Sex"]):
-    if j=="M":
-        df["Sex"][i] = 0
-    else:
-        df["Sex"][i] = 1
-        
-for i,j in enumerate(df["ChestPainType"]):
-    if j=="ATA":
-        df["ChestPainType"][i] = 0
-    elif j=="NAP":
-        df["ChestPainType"][i] = 1
-    elif j=="ASY":
-        df["ChestPainType"][i] = 2
-    else:
-        df["ChestPainType"][i] = 3
-        
-for i,j in enumerate(df["RestingECG"]):
-    if j=="Normal":
-        df["RestingECG"][i] = 0
-    elif j=="ST":
-        df["RestingECG"][i] = 1
-    else:
-        df["RestingECG"][i] = 2
-
-for i,j in enumerate(df["ST_Slope"]):
-    if j=="Flat":
-        df["ST_Slope"][i] = 0
-    elif j=="Up":
-        df["ST_Slope"][i] = 1
-    else:
-        df["ST_Slope"][i] = 2
-        
-for i,j in enumerate(df["ExerciseAngina"]):
-    if j=="N":
-        df["ExerciseAngina"][i] = 0
-    else:
-        df["ExerciseAngina"][i] = 1
-
-
-X = df[["Age", "Sex", "ChestPainType", "RestingBP", "Cholesterol", "FastingBS", "RestingECG", "MaxHR", 'ExerciseAngina', "Oldpeak", "ST_Slope"]].values
-Y = df["HeartDisease"].values
-
-# Standardize features
-X = preprocessing.StandardScaler().fit(X).transform(X.astype(float))
-
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split( X, Y, test_size=0.2, random_state=4)
-print ('Train set:', X_train.shape,  y_train.shape)
-print ('Test set:', X_test.shape,  y_test.shape)
-
-k=2
-neigh=KNeighborsClassifier(n_neighbors=k).fit(X_train,y_train)
-yhat=neigh.predict(X_test)
-
-from sklearn import metrics
-print("Train set Accuracy: ", metrics.accuracy_score(y_train, neigh.predict(X_train)))
-print("Test set Accuracy: ", metrics.accuracy_score(y_test, yhat))
-
-# Save KNN model using pickle
-with open('Heart_Disease_KNN.pkl', 'wb') as knn_pickle:
-    pickle.dump(neigh, knn_pickle)
-
-# Load KNN model and make predictions
-loaded_knn_model = pickle.load(open('Heart_Disease_KNN.pkl', 'rb'))
-knn_result = loaded_knn_model.predict(X_test)
-print("Loaded KNN Model Test Accuracy:", metrics.accuracy_score(y_test, knn_result))
-
-# Neural Network model
-model = Sequential([
-    Dense(8, activation="relu", input_dim=11),
-    Dense(16, activation="relu"),
-    Dense(8, activation="relu"),
-    Dense(1, activation="sigmoid")
-])
-model.compile(optimizer=Adam(learning_rate=0.001), loss="binary_crossentropy", metrics=["accuracy"])
-# Train Neural Network model
-model.fit(X_train, y_train, epochs=100, verbose=1)
-
-# Evaluate Neural Network model
-loss, acc = model.evaluate(X_test, y_test, verbose=1)
-print(f"Neural Network Model Test Accuracy: {acc}")
-
-# Save Neural Network model architecture and weights
-model_json = model.to_json()
-with open(r"C:/Users/huzai/vs code projects/Diseases/models/HeartDisease.json", "w") as json_file:
-    json_file.write(model_json)
-model.save(r"C:/Users/huzai/vs code projects/Diseases/models/HeartDisease.h5")
-print("Neural Network model saved to disk")
+print("Model, features, and label mappings saved successfully.")
