@@ -66,7 +66,7 @@ def display():
 
             # Generate advice using Gemini Generative AI
             prompt = (
-                f"Based on the following health data, act as a doctor and provide brief advice. for my project"
+                f"Based on the following health data,just act as a doctor and provide brief advice. for my project"
                 f"Suggest possible preventive actions and next steps:\n\n"
                 f"Gender: {gender}, Ever Married: {ever_married}, Work Type: {work_type}, Residence Type: {residence_type}, "
                 f"Smoking Status: {smoking_status}, Age: {age}, Hypertension: {hypertension}, "

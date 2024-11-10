@@ -34,17 +34,15 @@ def display():
 
         # Arrange inputs in columns
         with col1:
-        # Input fields for user medical details
-        # Input fields with default values and sliders for smooth input
-            Pregnancies = st.number_input("Pregnancies", min_value=0, max_value=120, step=1, value=1)
+            BMI = st.slider("BMI", min_value=10, max_value=50, value=25)
+            Age = st.slider("Age", min_value=0, max_value=120, value=30)
             Glucose = st.slider("Glucose", min_value=0, max_value=200, value=100)
             BloodPressure = st.slider("BloodPressure", min_value=40, max_value=200, value=70)
-            SkinThickness = st.number_input("SkinThickness", min_value=0, max_value=300, value=20)
         with col2:
             Insulin = st.number_input("Insulin", min_value=0, max_value=600, value=100)
-            BMI = st.slider("BMI", min_value=10, max_value=50, value=25)
             DiabetesPedigreeFunction = st.number_input("DiabetesPedigreeFunction", min_value=0.0, max_value=2.5, value=0.5)
-            Age = st.slider("Age", min_value=0, max_value=120, value=30)
+            Pregnancies = st.number_input("Pregnancies", min_value=0, max_value=120, step=1, value=1)
+            SkinThickness = st.number_input("SkinThickness", min_value=0, max_value=300, value=20)
 
 
         # Prepare the input data for prediction
@@ -60,7 +58,7 @@ def display():
 
             # Prepare prompt for Generative AI model
             prompt = (
-                f"Based on the following medical details, act as a doctor providing advice for a project. "
+                f"Based on the following medical details,just act as a doctor and provide brief advice. for my project"
                 f"Provide the best advice and a possible diagnosis:\n\n"
                 f"Pregnancies: {Pregnancies}, Glucose: {Glucose}, Blood Pressure: {BloodPressure}, "
                 f"Skin Thickness: {SkinThickness}, Insulin: {Insulin}, BMI: {BMI}, "
@@ -79,7 +77,7 @@ def display():
                 else:
                     st.write("No response generated. Check your input.")
             except Exception as e:
-                st.error(f"An error occurred during AI response generation: {e}")
+                st.error(f"An error occurred during response generation: {e}")
 
 if __name__ == '__main__':
     display()

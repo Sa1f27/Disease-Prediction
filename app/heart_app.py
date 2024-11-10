@@ -31,16 +31,16 @@ def display():
         with col1:
         # Input fields for heart disease prediction
             age = st.slider("Age", min_value=0, max_value=120, step=1, value=50)
-            sex = st.selectbox("Sex", options=["Male", "Female"], index=0)
-            chest_pain_type = st.selectbox("Chest Pain Type", options=["ATA", "NAP", "ASY", "TA"], index=0)
             resting_bp = st.slider("Resting Blood Pressure", min_value=0, max_value=300, value=120, step=1)
             cholesterol = st.slider("Cholesterol", min_value=0, max_value=600, value=200, step=5)
+            max_hr = st.slider("Max Heart Rate Achieved", min_value=0, max_value=300, value=150, step=5)
+            oldpeak = st.slider("Oldpeak (ST depression)", min_value=0.0, max_value=10.0, value=1.0, step=0.1)
         with col2:
             fasting_bs = st.selectbox("Fasting Blood Sugar > 120 mg/dl", options=["Yes", "No"], index=1)
             resting_ecg = st.selectbox("Resting ECG", options=["Normal", "ST", "LHV"], index=0)
-            max_hr = st.slider("Max Heart Rate Achieved", min_value=0, max_value=300, value=150, step=5)
+            sex = st.selectbox("Sex", options=["Male", "Female"], index=0)
+            chest_pain_type = st.selectbox("Chest Pain Type", options=["ATA", "NAP", "ASY", "TA"], index=0)
             exercise_angina = st.selectbox("Exercise Induced Angina", options=["Yes", "No"], index=1)
-            oldpeak = st.slider("Oldpeak (ST depression)", min_value=0.0, max_value=10.0, value=1.0, step=0.1)
             st_slope = st.selectbox("ST Slope", options=["Flat", "Up", "Down"], index=0)
 
 
@@ -68,7 +68,7 @@ def display():
 
             # Prepare prompt for Generative AI model
             prompt = (
-                f"Based on the following medical details, act as a doctor providing advice for a project. "
+                f"Based on the following medical details,just act as a doctor and provide brief advice. for my project"
                 f"Provide the best advice and a possible diagnosis:\n\n"
                 f"Age: {age}, Sex: {'Male' if sex == 0 else 'Female'}, Chest Pain Type: {chest_pain_type}, "
                 f"Resting Blood Pressure: {resting_bp}, Cholesterol: {cholesterol}, "

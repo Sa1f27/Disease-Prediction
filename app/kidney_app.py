@@ -29,14 +29,14 @@ def display():
         # Arrange inputs in columns
         with col1:
         # Input fields for each feature with default values
-            blood_pressure = st.number_input("Blood Pressure", min_value=0, max_value=200, format="%d", value=80)
+            blood_pressure = st.slider("Blood Pressure", min_value=0, max_value=200, format="%d", value=80)
+            blood_sugar = st.slider("Blood Sugar", min_value=0, max_value=300, format="%d", value=100)
+            blood_urea = st.slider("Blood Urea", min_value=0, max_value=200, format="%d", value=40)
+            white_blood_cells = st.slider("White Blood Cells", min_value=0, max_value=20000, format="%d", value=8000)
+        with col2:
+            hemoglobin = st.number_input("Hemoglobin", min_value=0.0, max_value=20.0, format="%.2f", value=13.5)
             specific_gravity = st.number_input("Specific Gravity", min_value=0.0, max_value=2.0, format="%.2f", value=1.02)
             albumin = st.number_input("Albumin", min_value=0, max_value=10, format="%d", value=3)
-            blood_sugar = st.number_input("Blood Sugar", min_value=0, max_value=300, format="%d", value=100)
-        with col2:
-            blood_urea = st.number_input("Blood Urea", min_value=0, max_value=200, format="%d", value=40)
-            hemoglobin = st.number_input("Hemoglobin", min_value=0.0, max_value=20.0, format="%.2f", value=13.5)
-            white_blood_cells = st.number_input("White Blood Cells", min_value=0, max_value=20000, format="%d", value=8000)
             red_blood_cells = st.number_input("Red Blood Cells", min_value=0, max_value=10, format="%d", value=5)
 
         # Prepare feature array for prediction
@@ -55,7 +55,7 @@ def display():
 
             # Generate advice using Gemini Generative AI
             prompt = (
-                f"Based on the following medical test results, act as a doctor and provide brief advice for a project. "
+                f"Based on the following medical test results,just act as a doctor and provide brief advice. for my project"
                 f"Suggest potential next steps:\n\n"
                 f"Blood Pressure: {blood_pressure}, Specific Gravity: {specific_gravity}, Albumin: {albumin}, "
                 f"Blood Sugar: {blood_sugar}, Blood Urea: {blood_urea}, Hemoglobin: {hemoglobin}, "

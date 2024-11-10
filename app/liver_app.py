@@ -55,7 +55,7 @@ def display():
 
             # Generate advice using Gemini Generative AI
             prompt = (
-                f"Based on the following liver function test results, act as a doctor and provide brief advice. "
+                f"Based on the following liver function test results,just act as a doctor and provide brief advice. for my project"
                 f"Suggest potential next steps:\n\n"
                 f"Total Bilirubin: {total_bilirubin}, Direct Bilirubin: {direct_bilirubin}, Alkaline Phosphatase: {alkaline_phosphatase}, "
                 f"Alamine Aminotransferase (Sgpt): {alanine_aminotransferase}, Total Proteins: {total_proteins}, "
