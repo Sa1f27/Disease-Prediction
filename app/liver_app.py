@@ -23,14 +23,20 @@ def display():
 
     # Define form for user input
     with st.form('Liver_disease_prediction'):
+
+        col1, col2 = st.columns(2)
+
+        # Arrange inputs in columns
+        with col1:
         # Input fields with default values
-        total_bilirubin = st.number_input("Total Bilirubin", min_value=0.0, max_value=10.0, format="%.2f", value=1.0)
-        direct_bilirubin = st.number_input("Direct Bilirubin", min_value=0.0, max_value=5.0, format="%.2f", value=0.3)
-        alkaline_phosphatase = st.number_input("Alkaline Phosphatase", min_value=0, max_value=2000, format="%d", value=100)
-        alanine_aminotransferase = st.number_input("Alamine Aminotransferase (Sgpt)", min_value=0, max_value=1000, format="%d", value=20)
-        total_proteins = st.number_input("Total Proteins", min_value=0.0, max_value=10.0, format="%.2f", value=6.8)
-        albumin = st.number_input("Albumin", min_value=0.0, max_value=5.0, format="%.2f", value=3.5)
-        albumin_globulin_ratio = st.number_input("Albumin-Globulin Ratio", min_value=0.0, max_value=5.0, format="%.2f", value=1.1)
+            total_bilirubin = st.number_input("Total Bilirubin", min_value=0.0, max_value=10.0, format="%.2f", value=1.0)
+            direct_bilirubin = st.number_input("Direct Bilirubin", min_value=0.0, max_value=5.0, format="%.2f", value=0.3)
+            alkaline_phosphatase = st.number_input("Alkaline Phosphatase", min_value=0, max_value=2000, format="%d", value=100)
+        with col2:
+            alanine_aminotransferase = st.number_input("Alamine Aminotransferase (Sgpt)", min_value=0, max_value=1000, format="%d", value=20)
+            total_proteins = st.number_input("Total Proteins", min_value=0.0, max_value=10.0, format="%.2f", value=6.8)
+            albumin = st.number_input("Albumin", min_value=0.0, max_value=5.0, format="%.2f", value=3.5)
+            albumin_globulin_ratio = st.number_input("Albumin-Globulin Ratio", min_value=0.0, max_value=5.0, format="%.2f", value=1.1)
 
         # Prediction button
         if st.form_submit_button("Predict"):

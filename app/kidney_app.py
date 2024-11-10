@@ -23,15 +23,21 @@ def display():
 
     # Define form for user input
     with st.form('Kidney_disease_prediction'):
+
+        col1, col2 = st.columns(2)
+
+        # Arrange inputs in columns
+        with col1:
         # Input fields for each feature with default values
-        blood_pressure = st.number_input("Blood Pressure", min_value=0, max_value=200, format="%d", value=80)
-        specific_gravity = st.number_input("Specific Gravity", min_value=0.0, max_value=2.0, format="%.2f", value=1.02)
-        albumin = st.number_input("Albumin", min_value=0, max_value=10, format="%d", value=3)
-        blood_sugar = st.number_input("Blood Sugar", min_value=0, max_value=300, format="%d", value=100)
-        blood_urea = st.number_input("Blood Urea", min_value=0, max_value=200, format="%d", value=40)
-        hemoglobin = st.number_input("Hemoglobin", min_value=0.0, max_value=20.0, format="%.2f", value=13.5)
-        white_blood_cells = st.number_input("White Blood Cells", min_value=0, max_value=20000, format="%d", value=8000)
-        red_blood_cells = st.number_input("Red Blood Cells", min_value=0, max_value=10, format="%d", value=5)
+            blood_pressure = st.number_input("Blood Pressure", min_value=0, max_value=200, format="%d", value=80)
+            specific_gravity = st.number_input("Specific Gravity", min_value=0.0, max_value=2.0, format="%.2f", value=1.02)
+            albumin = st.number_input("Albumin", min_value=0, max_value=10, format="%d", value=3)
+            blood_sugar = st.number_input("Blood Sugar", min_value=0, max_value=300, format="%d", value=100)
+        with col2:
+            blood_urea = st.number_input("Blood Urea", min_value=0, max_value=200, format="%d", value=40)
+            hemoglobin = st.number_input("Hemoglobin", min_value=0.0, max_value=20.0, format="%.2f", value=13.5)
+            white_blood_cells = st.number_input("White Blood Cells", min_value=0, max_value=20000, format="%d", value=8000)
+            red_blood_cells = st.number_input("Red Blood Cells", min_value=0, max_value=10, format="%d", value=5)
 
         # Prepare feature array for prediction
         features = np.array([[blood_pressure, specific_gravity, albumin, blood_sugar,

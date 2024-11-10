@@ -26,17 +26,24 @@ def display():
 
     # Define the form for user input
     with st.form("Stroke disease prediction"):
-        # Input fields with default values
-        gender = st.selectbox("Gender", ["Male", "Female", "Other"], index=0)
-        ever_married = st.selectbox("Ever Married", ["No", "Yes"], index=0)
-        work_type = st.selectbox("Work Type", ["Private", "Self-employed", "Govt_job", "children", "Never_worked"], index=0)
-        residence_type = st.selectbox("Residence Type", ["Rural", "Urban"], index=0)
-        smoking_status = st.selectbox("Smoking Status", ["never smoked", "formerly smoked", "smokes", "Unknown"], index=0)
-        age = st.slider("Age", 0, 100, 25)
-        hypertension = st.selectbox("Hypertension (0 = No, 1 = Yes)", [0, 1], index=0)
-        heart_disease = st.selectbox("Heart Disease (0 = No, 1 = Yes)", [0, 1], index=0)
-        avg_glucose_level = st.number_input("Average Glucose Level", min_value=0.0, value=85.0)
-        bmi = st.number_input("BMI", min_value=0.0, value=24.0)
+        # Divide the layout into two columns
+        col1, col2 = st.columns(2)
+
+        # Arrange inputs in columns
+        with col1:
+            gender = st.selectbox("Gender", ["Male", "Female", "Other"], index=0)
+            ever_married = st.selectbox("Ever Married", ["No", "Yes"], index=0)
+            work_type = st.selectbox("Work Type", ["Private", "Self-employed", "Govt_job", "children", "Never_worked"], index=0)
+            residence_type = st.selectbox("Residence Type", ["Rural", "Urban"], index=0)
+            smoking_status = st.selectbox("Smoking Status", ["never smoked", "formerly smoked", "smokes", "Unknown"], index=0)
+
+        with col2:
+            age = st.slider("Age", 0, 100, 25)
+            hypertension = st.selectbox("Hypertension (0 = No, 1 = Yes)", [0, 1], index=0)
+            heart_disease = st.selectbox("Heart Disease (0 = No, 1 = Yes)", [0, 1], index=0)
+            avg_glucose_level = st.number_input("Average Glucose Level", min_value=0.0, value=85.0)
+            bmi = st.number_input("BMI", min_value=0.0, value=24.0)
+
 
         # Prepare input data
         categorical_data = [[gender, ever_married, work_type, residence_type, smoking_status]]
@@ -59,7 +66,7 @@ def display():
 
             # Generate advice using Gemini Generative AI
             prompt = (
-                f"Based on the following health data, act as a doctor and provide brief advice. "
+                f"Based on the following health data, act as a doctor and provide brief advice. for my project"
                 f"Suggest possible preventive actions and next steps:\n\n"
                 f"Gender: {gender}, Ever Married: {ever_married}, Work Type: {work_type}, Residence Type: {residence_type}, "
                 f"Smoking Status: {smoking_status}, Age: {age}, Hypertension: {hypertension}, "

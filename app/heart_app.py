@@ -24,19 +24,24 @@ def display():
 
     # Define form for user input
     with st.form("Heart_disease_form"):
-        # Input fields for heart disease prediction
-        age = st.slider("Age", min_value=0, max_value=120, step=1, value=50)
 
-        sex = st.selectbox("Sex", options=["Male", "Female"], index=0)
-        chest_pain_type = st.selectbox("Chest Pain Type", options=["ATA", "NAP", "ASY", "TA"], index=0)
-        resting_bp = st.slider("Resting Blood Pressure", min_value=0, max_value=300, value=120, step=1)
-        cholesterol = st.slider("Cholesterol", min_value=0, max_value=600, value=200, step=5)
-        fasting_bs = st.selectbox("Fasting Blood Sugar > 120 mg/dl", options=["Yes", "No"], index=1)
-        resting_ecg = st.selectbox("Resting ECG", options=["Normal", "ST", "LHV"], index=0)
-        max_hr = st.slider("Max Heart Rate Achieved", min_value=0, max_value=300, value=150, step=5)
-        exercise_angina = st.selectbox("Exercise Induced Angina", options=["Yes", "No"], index=1)
-        oldpeak = st.slider("Oldpeak (ST depression)", min_value=0.0, max_value=10.0, value=1.0, step=0.1)
-        st_slope = st.selectbox("ST Slope", options=["Flat", "Up", "Down"], index=0)
+        col1, col2 = st.columns(2)
+
+        # Arrange inputs in columns
+        with col1:
+        # Input fields for heart disease prediction
+            age = st.slider("Age", min_value=0, max_value=120, step=1, value=50)
+            sex = st.selectbox("Sex", options=["Male", "Female"], index=0)
+            chest_pain_type = st.selectbox("Chest Pain Type", options=["ATA", "NAP", "ASY", "TA"], index=0)
+            resting_bp = st.slider("Resting Blood Pressure", min_value=0, max_value=300, value=120, step=1)
+            cholesterol = st.slider("Cholesterol", min_value=0, max_value=600, value=200, step=5)
+        with col2:
+            fasting_bs = st.selectbox("Fasting Blood Sugar > 120 mg/dl", options=["Yes", "No"], index=1)
+            resting_ecg = st.selectbox("Resting ECG", options=["Normal", "ST", "LHV"], index=0)
+            max_hr = st.slider("Max Heart Rate Achieved", min_value=0, max_value=300, value=150, step=5)
+            exercise_angina = st.selectbox("Exercise Induced Angina", options=["Yes", "No"], index=1)
+            oldpeak = st.slider("Oldpeak (ST depression)", min_value=0.0, max_value=10.0, value=1.0, step=0.1)
+            st_slope = st.selectbox("ST Slope", options=["Flat", "Up", "Down"], index=0)
 
 
         # Map categorical inputs to numerical values

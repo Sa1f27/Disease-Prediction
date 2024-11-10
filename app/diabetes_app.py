@@ -29,16 +29,22 @@ def display():
 
     # Define form for user input
     with st.form("Diabetes_disease_form"):
+
+        col1, col2 = st.columns(2)
+
+        # Arrange inputs in columns
+        with col1:
         # Input fields for user medical details
         # Input fields with default values and sliders for smooth input
-        Pregnancies = st.number_input("Pregnancies", min_value=0, max_value=120, step=1, value=1)
-        Glucose = st.slider("Glucose", min_value=0, max_value=200, value=100)
-        BloodPressure = st.slider("BloodPressure", min_value=40, max_value=200, value=70)
-        SkinThickness = st.number_input("SkinThickness", min_value=0, max_value=300, value=20)
-        Insulin = st.number_input("Insulin", min_value=0, max_value=600, value=100)
-        BMI = st.slider("BMI", min_value=10, max_value=50, value=25)
-        DiabetesPedigreeFunction = st.number_input("DiabetesPedigreeFunction", min_value=0.0, max_value=2.5, value=0.5)
-        Age = st.slider("Age", min_value=0, max_value=120, value=30)
+            Pregnancies = st.number_input("Pregnancies", min_value=0, max_value=120, step=1, value=1)
+            Glucose = st.slider("Glucose", min_value=0, max_value=200, value=100)
+            BloodPressure = st.slider("BloodPressure", min_value=40, max_value=200, value=70)
+            SkinThickness = st.number_input("SkinThickness", min_value=0, max_value=300, value=20)
+        with col2:
+            Insulin = st.number_input("Insulin", min_value=0, max_value=600, value=100)
+            BMI = st.slider("BMI", min_value=10, max_value=50, value=25)
+            DiabetesPedigreeFunction = st.number_input("DiabetesPedigreeFunction", min_value=0.0, max_value=2.5, value=0.5)
+            Age = st.slider("Age", min_value=0, max_value=120, value=30)
 
 
         # Prepare the input data for prediction
