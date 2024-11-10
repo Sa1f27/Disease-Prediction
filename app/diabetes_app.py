@@ -1,11 +1,7 @@
 import streamlit as st
 import pickle
 import numpy as np
-from ai_app import display as ai_display
 import google.generativeai as genai
-from tensorflow.python.keras.models import model_from_json
-from tensorflow.python.keras.mixed_precision import policy
-from sklearn.preprocessing import StandardScaler
 
 # Configure Google Generative AI
 genai.configure(api_key="Your Key")  # Replace with your actual API key
