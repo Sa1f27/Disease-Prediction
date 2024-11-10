@@ -4,7 +4,7 @@ import numpy as np
 import google.generativeai as genai
 
 # Configure Google Generative AI with your API key
-genai.configure(api_key="AIzaSyAe0w7EC0TTrh6tG0Ijd6HGxIFijg_hp50")  # Replace with your actual API key
+genai.configure(api_key="Your Key")  # Replace with your actual API key
 
 # Define the main display function for the Heart Disease Prediction App
 def display():

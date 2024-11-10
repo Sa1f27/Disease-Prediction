@@ -5,7 +5,7 @@ import PyPDF2
 import numpy as np
 
 # Configure the Gemini API key
-genai.configure(api_key="AIzaSyAe0w7EC0TTrh6tG0Ijd6HGxIFijg_hp50")  # Replace with your actual API key
+genai.configure(api_key="Your Key")  # Replace with your actual API key
 
 # Define a function to read and extract text from PDF
 def read_pdf(file):

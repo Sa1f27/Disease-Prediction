@@ -8,7 +8,7 @@ from tensorflow.python.keras.mixed_precision import policy
 from sklearn.preprocessing import StandardScaler
 
 # Configure Google Generative AI
-genai.configure(api_key="AIzaSyAe0w7EC0TTrh6tG0Ijd6HGxIFijg_hp50")  # Replace with your actual API key
+genai.configure(api_key="Your Key")  # Replace with your actual API key
 
 # Define the main display function
 def display():
