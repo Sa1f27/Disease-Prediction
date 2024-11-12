@@ -7,7 +7,7 @@ from diabetes_app import display as diabetes_display
 from liver_app import display as liver_disease_display
 from stroke_app import display as stroke_display
 from ai_app import display as ai_display
-
+from ai_app import query as ai_queries
 
 # Set the page configuration
 st.set_page_config(page_title="Disease Diagnostic App",page_icon="🏥", layout="wide")
