@@ -18,21 +18,21 @@ To run the app locally, follow these steps:
 
 1. **Clone the repository**:
 
-   ```bash
-   git clone https://github.com/yourusername/disease-diagnostic-app.git
-   cd disease-diagnostic-app
+   ```
+   git clone https://github.com/Sa1f27/Disease-Prediction.git
+   cd app
    ```
 
 2. **Set up a virtual environment** (optional but recommended):
 
-   ```bash
+   ```
    python3 -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```
 
 3. **Install dependencies**:
 
-   ```bash
+   ```
    pip install -r requirements.txt
    ```
 
@@ -42,7 +42,7 @@ To run the app locally, follow these steps:
 
    In the project directory, run:
 
-   ```bash
+   ```
    streamlit run app.py
    ```
 
