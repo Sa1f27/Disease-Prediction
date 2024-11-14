@@ -1,6 +1,6 @@
 # SoulScan: Advance Disease Diagnosis with AI and Machine Learning
 
-This is a comprehensive platform designed to predict various diseases, including Heart Disease, Kidney Disease, Diabetes, Liver Disease, Stroke, and AI-powered assistance. The app leverages machine learning algorithms and large datasets to analyze user data and provide reliable disease predictions with over **90% accuracy**.
+This platform is designed to predict various diseases, including Heart Disease, Kidney Disease, Diabetes, Liver Disease, Stroke, and AI-powered assistance. The app leverages machine learning algorithms and large datasets to analyze user data and provide reliable disease predictions with over **90% accuracy**.
 
 ## Features
 
