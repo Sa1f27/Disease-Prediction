@@ -86,3 +86,5 @@ To run the app locally, follow these steps:
 - **Pandas**: For data manipulation and analysis.
 - **NumPy**: For numerical operations.
 - **Matplotlib/Seaborn**: For data visualization.
+- **Tensorflow & Keras**: For Deep Learning model
+- **Pickle**: For serialization.
