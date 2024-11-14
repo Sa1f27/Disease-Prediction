@@ -20,7 +20,6 @@ To run the app locally, follow these steps:
 
    ```
    git clone https://github.com/Sa1f27/Disease-Prediction.git
-   cd app
    ```
 
 2. **Set up a virtual environment** (optional but recommended):
@@ -43,6 +42,7 @@ To run the app locally, follow these steps:
    In the project directory, run:
 
    ```
+   cd app
    streamlit run app.py
    ```
 
