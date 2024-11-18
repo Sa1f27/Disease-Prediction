@@ -2,6 +2,7 @@ import streamlit as st
 import pickle
 import google.generativeai as genai
 import PyPDF2
+import numpy as np
 
 # Configure the Gemini API key
 genai.configure(api_key="Your Key")  # Replace with your actual API key
